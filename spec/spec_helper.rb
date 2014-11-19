@@ -1,9 +1,10 @@
 ENV["RAILS_ENV"] ||= 'test'
-require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'factory_girl_rails'
+require 'database_cleaner'
 
-# Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 # Checks for pending migrations before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -16,6 +17,13 @@ RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
+
+  config.include Devise::TestHelpers, type: :controller
+  config.include Requests::JsonHelpers, type: :controller
+
+  config.include Capybara::DSL, type: :request
+  config.include Login::Customer, type: :request
+  config.include Login::Vendor, type: :request
 
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
@@ -35,4 +43,16 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
+
+  config.before :suite do
+    DatabaseCleaner.strategy = :deletion
+  end
+
+  config.before do
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
