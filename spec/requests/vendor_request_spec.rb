@@ -15,5 +15,9 @@ feature 'Vendor Section', type: :request do
       expect(page).to have_link('Sign Out')
     end
 
+    it 'must have welcome content' do
+      expect(page).to have_content("Welcome #{@current_vendor.email}")
+    end
+
   end
 end

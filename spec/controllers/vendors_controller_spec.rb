@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe VendorsController, :type => :controller do
 
-  describe "response of action's for authenticated super user" do
+  describe "response of action's for authenticated vendor" do
     before do
       @current_vendor = FactoryGirl.create(:vendor)
       sign_in @current_vendor

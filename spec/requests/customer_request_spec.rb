@@ -14,5 +14,9 @@ feature 'Customer Section', type: :request do
     it 'must have log out link' do
       expect(page).to have_link('Sign Out')
     end
+
+    it 'must have welcome content' do
+      expect(page).to have_content("Welcome #{@current_customer.email}")
+    end
   end
 end

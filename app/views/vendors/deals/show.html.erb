@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sell currency:</strong>
+  <%= @deal.sell_currency %>
+</p>
+
+<p>
+  <strong>Buy currency:</strong>
+  <%= @deal.buy_currency %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @deal.rate %>
+</p>
+
+<p>
+  <strong>Vendor:</strong>
+  <%= @deal.vendor.email %>
+</p>
+
+<%= link_to 'Edit', edit_vendors_deal_path(@deal) %> |
+<%= link_to 'Back', vendors_deals_path %>

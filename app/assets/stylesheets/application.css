@@ -16,6 +16,13 @@
 .box div {
   border: 1px solid #ccc;
   height: 106px;
-  padding-top: 14%;
+  text-align: center;
+}
+
+.box div span{
+  padding: auto;
+}
+
+.text-center{
   text-align: center;
 }
