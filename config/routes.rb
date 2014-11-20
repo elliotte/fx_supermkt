@@ -1,5 +1,9 @@
 Fxsupermarket::Application.routes.draw do
 
+  namespace :customers do
+    resources :purchases
+  end
+
   devise_for :vendors
   devise_for :customers
 

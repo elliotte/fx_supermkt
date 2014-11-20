@@ -28,7 +28,7 @@ module ApplicationHelper
   def flash_message
     msg = ''
     flash.keys.each do |k|
-      msg += content_tag :p, flash[k], class: k
+      msg += content_tag :p, flash[k], class: k.to_s
     end
     msg
   end

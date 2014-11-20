@@ -1,0 +1,12 @@
+<p>
+  <strong>Deal:</strong>
+  <%= @purchase.deal.name %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @purchase.amount %>
+</p>
+
+<%= link_to 'Edit', edit_customers_purchase_path(@purchase), title: 'Edit' %>
+<%= link_to 'Back', customers_purchases_path, title: 'Back' %>
