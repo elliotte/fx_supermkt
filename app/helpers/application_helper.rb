@@ -33,4 +33,8 @@ module ApplicationHelper
     msg
   end
 
+  # This return the option for model pop-up.
+  def model_options
+    { remote: true, data:{toggle: :modal, target: '.bs-example-modal-sm'} }
+  end
 end

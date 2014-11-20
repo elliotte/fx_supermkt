@@ -2,20 +2,15 @@ class Vendors::DealsController < VendorsController
 
   before_action :set_deal, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
-
   def index
     @deals = current_vendor.deals
-    respond_with(@deals)
   end
 
   def show
-    respond_with(@deal)
   end
 
   def new
     @deal = Deal.new
-    respond_with([:vendors, @deal])
   end
 
   def edit

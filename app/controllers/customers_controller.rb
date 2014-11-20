@@ -4,5 +4,6 @@ class CustomersController < ApplicationController
 
   # GET /customers/dashboard
   def dashboard
+    @purchases = current_customer.purchases.order('created_at DESC').limit(5)
   end
 end

@@ -1,4 +1,4 @@
-<%= form_for([:customers, @purchase]) do |f| %>
+<%= form_for([:customers, @purchase], remote: request.xhr? ) do |f| %>
   <% if @purchase.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@purchase.errors.count, "error") %> prohibited this customers_purchase from being saved:</h2>

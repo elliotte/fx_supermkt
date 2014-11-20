@@ -17,7 +17,7 @@
         <td><%= deal.buy_currency %></td>
         <td><%= deal.rate %></td>
         <td><%= link_to 'Show', [:vendors, deal], title: 'Show' %></td>
-        <td><%= link_to 'Edit', edit_vendors_deal_path(deal), title: 'Edit' %></td>
+        <td><%= link_to 'Edit', edit_vendors_deal_path(deal), model_options.merge(title: 'Edit') %></td>
         <td><%= link_to 'Destroy', [:vendors, deal], method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete' %></td>
       </tr>
     <% end %>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Deal', new_vendors_deal_path, title: 'Add new deal.' %>
+<%= link_to 'New Deal', new_vendors_deal_path, model_options.merge(title: 'Add new deal.') %>

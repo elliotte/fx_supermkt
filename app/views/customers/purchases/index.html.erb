@@ -15,7 +15,7 @@
         <td><%= purchase.deal.name %></td>
         <td><%= purchase.amount %></td>
         <td><%= link_to 'Show', [:customers, purchase], title: 'Show' %></td>
-        <td><%= link_to 'Edit', edit_customers_purchase_path(purchase), title: 'Edit' %></td>
+        <td><%= link_to 'Edit', edit_customers_purchase_path(purchase), model_options.merge(title: 'Edit')%></td>
         <td><%= link_to 'Destroy', [:customers, purchase], method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete' %></td>
       </tr>
     <% end %>
@@ -24,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Purchase', new_customers_purchase_path, title: 'Purchase New Deal.' %>
+<%= link_to 'New Purchase', new_customers_purchase_path, model_options.merge(title: 'Purchase New Deal.')%>

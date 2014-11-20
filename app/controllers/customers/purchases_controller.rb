@@ -17,10 +17,15 @@ class Customers::PurchasesController < CustomersController
 
   def create
     @purchase =  current_customer.purchases.build(purchase_params)
-    if @purchase.save
-      redirect_to [:customers, @purchase], notice: 'Deal purchase successfully.'
-    else
-      render :new
+    respond_to do |format|
+      if @purchase.save
+        format.html do
+          redirect_to [:customers, @purchase], notice: 'Deal purchase successfully.'
+        end
+        format.js
+      else
+        render :new
+      end
     end
   end
 
