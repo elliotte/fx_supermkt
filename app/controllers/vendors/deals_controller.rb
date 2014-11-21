@@ -18,8 +18,12 @@ class Vendors::DealsController < VendorsController
 
   def create
     @deal = current_vendor.deals.build(deal_params)
+    @deals = current_vendor.deals.active.order('created_at desc')
     if @deal.save
-      redirect_to [:vendors, @deal], notice: 'Deal Created Successfully.'
+      respond_to do |format|
+        format.html { redirect_to [:vendors, @deal], notice: 'Deal Created Successfully.' }
+        format.js
+      end
     else
       render :new
     end
@@ -48,6 +52,6 @@ class Vendors::DealsController < VendorsController
     end
 
     def deal_params
-      params.require(:deal).permit(:sell_currency, :buy_currency, :rate)
+      params.require(:deal).permit(:sell_currency, :buy_currency, :rate, :expiry_date)
     end
 end

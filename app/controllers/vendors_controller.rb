@@ -4,6 +4,6 @@ class VendorsController < ApplicationController
 
   # GET /vendors/dashboard
   def dashboard
-    @deals = current_vendor.deals.order('created_at DESC').limit(5)
+    @deals = current_vendor.deals.active.order('created_at desc')
   end
 end
