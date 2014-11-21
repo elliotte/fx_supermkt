@@ -4,26 +4,28 @@
 </div>
 
 
-<h2>Recent Purchases:<h2>
+<h2>Deals:<h2>
 
-<table border="1"  cellpadding="50">
+<table cellpadding="5" style = "text-align: center;">
   <thead>
     <tr>
-      <th>Deal</th>
-      <th>Amount</th>
-      <th colspan="3"></th>
+      <th>Buy currency</th>
+      <th>Sell Currency</th>
+      <th>Rate</th>
+      <th>Purchase</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @purchases.each do |purchase| %>
-      <tr>
-        <td><%= purchase.deal.name %></td>
-        <td><%= purchase.amount %></td>
-        <td><%= link_to 'Show', [:customers, purchase], title: 'Show' %></td>
-        <td><%= link_to 'Edit', edit_customers_purchase_path(purchase), model_options.merge(title: 'Edit')%></td>
-        <td><%= link_to 'Destroy', [:customers, purchase], method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete' %></td>
-      </tr>
+    <% unless @deals.blank? %>
+      <% @deals.each do |deal| %>
+        <tr>
+          <td><%= deal.sell_currency %></td>
+          <td><%= deal.buy_currency %></td>
+          <td><%= deal.rate.to_s %></td>
+          <td><%= link_to 'Purchase Deal', new_customers_purchase_path(deal_id: deal.id), model_options.merge(title: 'Purchase Deal.') %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
@@ -31,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Purchase', new_customers_purchase_path, model_options.merge(title: 'Purchase New Deal.')%>
+<%#link_to 'New Purchase', new_customers_purchase_path, model_options.merge(title: 'Purchase New Deal.')%>

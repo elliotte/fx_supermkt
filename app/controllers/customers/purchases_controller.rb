@@ -9,6 +9,7 @@ class Customers::PurchasesController < CustomersController
   end
 
   def new
+    @deal = Deal.find(params[:deal_id]) if params[:deal_id].present?
     @purchase = Purchase.new
   end
 
@@ -44,6 +45,7 @@ class Customers::PurchasesController < CustomersController
       redirect_to customers_purchases_url, alert: 'Unable to delete.'
     end
   end
+
 
   private
     def set_purchase
