@@ -1,0 +1,23 @@
+<table cellpadding="5" style = "text-align: center;">
+  <thead>
+    <tr>
+      <th>Buy currency</th>
+      <th>Sell Currency</th>
+      <th>Rate</th>
+      <th>Purchase</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless @deals.blank? %>
+      <% @deals.each do |deal| %>
+        <tr>
+          <td><%= deal.buy_currency %></td>
+          <td><%= deal.sell_currency %></td>
+          <td><%= deal.rate.to_s %></td>
+          <td><%= link_to 'Purchase Deal', new_customers_purchase_path(deal_id: deal.id), model_options.merge(title: 'Purchase Deal.') %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

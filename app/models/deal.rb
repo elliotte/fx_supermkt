@@ -9,4 +9,12 @@ class Deal < ActiveRecord::Base
   def name
     "#{sell_currency}-#{buy_currency}"
   end
+
+  def self.search_deals(params)
+    query = []
+    params.each do |k, v|
+      query << "#{k} = '#{v}'" unless v.blank?
+    end
+    Deal.active.where(query.join(' and ')).order('created_at desc')
+  end
 end

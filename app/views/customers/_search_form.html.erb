@@ -1,0 +1,7 @@
+<h3>Search for deals</h3>
+<%= form_tag '/customers/dashboard', remote: :true, method: :get do %>
+  <%= text_field_tag 'query[buy_currency]', '',  placeholder: 'Buy Currency' %>
+  <%= text_field_tag 'query[sell_currency]', '', placeholder: 'Sell Currency' %>
+
+  <%= submit_tag 'Search' %>
+<% end %>
