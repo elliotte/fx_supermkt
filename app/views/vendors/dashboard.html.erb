@@ -3,29 +3,12 @@
   <h2><%= "Welcome #{login_person.email}"%></h2>
 </div>
 
-<table border='1'>
-  <thead>
-    <tr>
-      <th>Sell currency</th>
-      <th>Buy currency</th>
-      <th>Rate</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+Active Deals
+<div id='deals_list'>
+  <%= render 'vendors/deals/index' %>
+</div>
 
-  <tbody>
-    <% @deals.each do |deal| %>
-      <tr>
-        <td><%= deal.sell_currency %></td>
-        <td><%= deal.buy_currency %></td>
-        <td><%= deal.rate %></td>
-        <td><%= link_to 'Show', [:vendors, deal], title: 'Show' %></td>
-        <td><%= link_to 'Edit', edit_vendors_deal_path(deal), model_options.merge(title: 'Edit') %></td>
-        <td><%= link_to 'Destroy', [:vendors, deal], method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<br>
 
 <div class="box">
   <div class="col-sm-3">
