@@ -1,24 +1,14 @@
 <%= form_for([:customers, @purchase], remote: request.xhr? ) do |f| %>
   <%= error_messages(@purchase) %>
-  
+
   <% unless @deal.blank? %>
     <div class="field">
       <%= f.label :deal_id %>
       <br>
       <%= f.label @deal.name %>
       <%= f.hidden_field :deal_id, value: @deal.id %>
-      <!-- f.select :deal_id, Deal.all.collect{|d| [d.name, d.id]} -->
-    </div>
-  <% else %>
-    <div class="field">
-      <%= f.label :deal_id %><br>
-      <%= f.select :deal_id, Deal.all.collect{|d| [d.name, d.id]} %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :deal_id %><br>
-    <%= f.select :deal_id, Deal.all.collect{|d| [d.name, d.id]} %>
-  </div>
   <div class="field">
     <%= f.label :amount %><br>
     <%= f.text_field :amount %>

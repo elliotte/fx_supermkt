@@ -18,6 +18,7 @@ class Customers::PurchasesController < CustomersController
 
   def create
     @purchase =  current_customer.purchases.build(purchase_params)
+    @purchases = current_customer.purchases.order('created_at desc').limit(5)
     if @purchase.save
       respond_to do |format|
         format.html do

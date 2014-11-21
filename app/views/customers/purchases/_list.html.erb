@@ -1,0 +1,19 @@
+<table cellpadding="5" style = "text-align: center;">
+  <thead>
+    <tr>
+      <th>Deal</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unless @purchases.blank? %>
+      <% @purchases.each do |purchase| %>
+        <tr>
+          <td><%= "#{purchase.deal.buy_currency} - #{purchase.deal.sell_currency}" %></td>
+          <td><%= purchase.amount %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

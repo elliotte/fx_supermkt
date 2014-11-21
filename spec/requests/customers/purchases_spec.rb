@@ -9,15 +9,14 @@ feature "Purchase", :type => :request do
     end
 
     it "Purchase start with index Page" do
-      visit customers_purchases_path
-      expect(page).to have_content('Listing Customers Purchases')
-      expect(page).to have_link('New Purchase')
+      visit customers_dashboard_path
+      expect(page).to have_link('Purchase Deal')
 
-      click_link('New Purchase')
+      click_link('Purchase Deal')
       expect(current_path).to eq(new_customers_purchase_path)
-      select Deal.first.name, from: :purchase_deal_id
       fill_in :purchase_amount, with: 9.36
       click_button('Create Purchase')
+      binding.pry
       expect(page).to have_content('Deal purchase successfully.')
       purchase = Purchase.last
       expect(current_path).to eq(customers_purchase_path(purchase))
@@ -31,6 +30,16 @@ feature "Purchase", :type => :request do
       expect(current_path).to eq(customers_purchases_path)
       click_link('Destroy')
       expect(page).to have_content('Purchase deal deleted successfully.')
+    end
+
+    it 'shows validation errors for invalid form submit' do
+      visit customers_purchases_path
+      expect(page).to have_content('Listing Customers Purchases')
+      expect(page).to have_link('New Purchase')
+
+      click_link('New Purchase')
+      click_button('Create Purchase')
+      expect(page).to have_content("Amount can\'t be blank")
     end
   end
 end

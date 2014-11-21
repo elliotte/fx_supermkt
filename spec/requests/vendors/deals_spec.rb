@@ -31,5 +31,17 @@ feature "Deals", :type => :request do
       click_link('Destroy')
       expect(page).to have_content('Deal Deleted Successfully.')
     end
+
+    it 'shows validation errors on invalid form submission' do
+      visit vendors_deals_path
+      expect(page).to have_content('Listing Deals')
+      expect(page).to have_link('New Deal')
+
+      click_link('New Deal')
+      click_button('Create Deal')
+      expect(page).to have_content("Sell currency can\'t be blank")
+      expect(page).to have_content("Buy currency can\'t be blank")
+      expect(page).to have_content("Rate can\'t be blank")
+    end
   end
 end

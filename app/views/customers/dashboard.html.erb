@@ -3,9 +3,14 @@
   <h3><%= "Welcome #{login_person.email}"%></h3>
 </div>
 
+<div id='recent_purchases'>
+  <%= render 'customers/purchases/list' %>
+</div>
+
 
 <h2>Deals:<h2>
 
+<div id='active_deals'>
 <table cellpadding="5" style = "text-align: center;">
   <thead>
     <tr>
@@ -20,8 +25,8 @@
     <% unless @deals.blank? %>
       <% @deals.each do |deal| %>
         <tr>
-          <td><%= deal.sell_currency %></td>
           <td><%= deal.buy_currency %></td>
+          <td><%= deal.sell_currency %></td>
           <td><%= deal.rate.to_s %></td>
           <td><%= link_to 'Purchase Deal', new_customers_purchase_path(deal_id: deal.id), model_options.merge(title: 'Purchase Deal.') %></td>
         </tr>
@@ -29,8 +34,6 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 
 <br>
-
-<%#link_to 'New Purchase', new_customers_purchase_path, model_options.merge(title: 'Purchase New Deal.')%>

@@ -24,4 +24,15 @@ RSpec.describe Deal, :type => :model do
       expect(deal.name).to eq('USD-INR')
     end
   end
+
+  describe 'Scopes' do
+    describe 'active' do
+      it 'returns deals that are not expired' do
+        deal1 = FactoryGirl.create(:deal, expiry_date: (Date.today + 5.days))
+        deal2 = FactoryGirl.create(:deal, expiry_date: (Date.today - 5.days))
+        expect(Deal.active).to match_array([deal1])
+        expect(Deal.active).to_not match_array([deal2])
+      end
+    end
+  end
 end

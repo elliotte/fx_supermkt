@@ -1,2 +1,3 @@
-$('tbody td:last').append(<%= last_tr(@purchase).html_safe %>)
-$('.bs-example-modal-sm').model('hide');
+$('#recent_purchases').html("<%=j render 'customers/purchases/list' %>")
+
+$('.bs-example-modal-sm').modal('hide');
